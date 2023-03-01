@@ -16,6 +16,7 @@
 		C8A32D9F29329C2500014826 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8A32D9E29329C2500014826 /* Preview Assets.xcassets */; };
 		C8A32DAC29329EA900014826 /* StartSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A32DAB29329EA900014826 /* StartSession.swift */; };
 		C8A32DAE29329EFF00014826 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A32DAD29329EFF00014826 /* ContentView.swift */; };
+		C8D2DE0729B20D2100BDFEBF /* MeditationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8D2DE0629B20D2100BDFEBF /* MeditationSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		C8A32D9E29329C2500014826 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C8A32DAB29329EA900014826 /* StartSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartSession.swift; sourceTree = "<group>"; };
 		C8A32DAD29329EFF00014826 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C8D2DE0629B20D2100BDFEBF /* MeditationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeditationSession.swift; sourceTree = "<group>"; };
 		D8A75E208DAC78C664FC5EB1 /* Pods-meditate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-meditate.release.xcconfig"; path = "Target Support Files/Pods-meditate/Pods-meditate.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				C8A32DAD29329EFF00014826 /* ContentView.swift */,
+				C8D2DE0629B20D2100BDFEBF /* MeditationSession.swift */,
 				C88F66322933A928002343D5 /* CalendarModule.swift */,
 				C88F66342933A997002343D5 /* CalendarView.swift */,
 				C8A32DAB29329EA900014826 /* StartSession.swift */,
@@ -220,6 +223,7 @@
 				C8A32DAE29329EFF00014826 /* ContentView.swift in Sources */,
 				C88F66392933C637002343D5 /* AppDelegateClass.swift in Sources */,
 				C88F66352933A998002343D5 /* CalendarView.swift in Sources */,
+				C8D2DE0729B20D2100BDFEBF /* MeditationSession.swift in Sources */,
 				C88F66332933A928002343D5 /* CalendarModule.swift in Sources */,
 				C8A32D9829329C2300014826 /* meditateApp.swift in Sources */,
 				C8A32DAC29329EA900014826 /* StartSession.swift in Sources */,

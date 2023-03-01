@@ -9,8 +9,8 @@ import SwiftUI
 import FSCalendar
 
 class CalendarModule: UIViewController, FSCalendarDelegate {
-    
-    var calendar = FSCalendar()
+    @EnvironmentObject var meditationData: MeditationData
+    @Published var calendar = FSCalendar()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -13,6 +13,7 @@ struct meditateApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(MeditationData())
         }
     }
 }
