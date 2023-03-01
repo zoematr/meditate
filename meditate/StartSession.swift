@@ -11,8 +11,9 @@ struct StartSession: View {
     @State private var timeRemaining = 0
     @State private var isTimerRunning = false
     @State private var timer: Timer?
-    @State private var minutesInput = 0
-    @State private var backgroundColor = CustomColor.cream
+    @State private var minutesInput = 10
+    @State private var backgroundColor = RadialGradient(colors: [CustomColor.cream, CustomColor.cream, CustomColor.cream], center: .center, startRadius: 0 ,endRadius: 10)
+    @State private var animateGradient = false
     
     var body: some View {
         ZStack {
@@ -29,16 +30,16 @@ struct StartSession: View {
                         timer = nil
                         timeRemaining = 0
                         isTimerRunning = false
-                        withAnimation {backgroundColor = CustomColor.cream}
-                    })  {
-                        Text("Stop")
+                        withAnimation {backgroundColor = RadialGradient(colors: [CustomColor.cream, CustomColor.cream, CustomColor.cream], center: .center, startRadius: 0 ,endRadius: 10)
+                        }
+                    }) //end of action button
+                    {Text("Stop")
                             .foregroundColor(CustomColor.brown)
                             .font(.system(size: 32, weight: .heavy, design: .default))
                             .foregroundColor(CustomColor.darkgreen)
                             .padding()
                     }
-                }
-                else {
+                } else { //view where you can set the timer
                     Spacer()
                     Text("\(minutesInput)")
                         .foregroundColor(CustomColor.darkgreen)
@@ -50,87 +51,73 @@ struct StartSession: View {
                         Button(action: {
                             if minutesInput < 120 {
                                 minutesInput += 1
-                            } })
+                            }//end of if
+                        }) //end of action buttonbn
                         {Text("+")
                                 .foregroundColor(CustomColor.darkgreen)
                                 .font(.system(size: 32, weight: .heavy, design: .default))
                                 .padding()
                         }
                         Button(action: {
-                            if minutesInput != 0 {minutesInput -= 1}}) {Text("-")
-                                    .foregroundColor(CustomColor.darkgreen)
-                                    .font(.system(size: 32, weight: .heavy, design: .default))
-                                    .padding()
-                            }
-                    } // HStack
-                    
-                    //still in the else
-                    Button(action: {
-                        if minutesInput != 0 {
-                        timeRemaining = minutesInput * 60
-                        isTimerRunning = true
-                        //AnimatedBackground().edgesIgnoringSafeArea(.all).blur(radius: 50)
-                        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                            if timeRemaining > 0 {
-                                timeRemaining -= 1
-                            } else {
-                                timer?.invalidate()
-                                timer = nil
-                                isTimerRunning = false
-                                backgroundColor = CustomColor.cream
-                            }
+                            if minutesInput != 0 {
+                                minutesInput -= 1
+                            }//end of if
+                        }) //end of action button
+                        {Text("-")
+                                .foregroundColor(CustomColor.darkgreen)
+                                .font(.system(size: 32, weight: .heavy, design: .default))
+                                .padding()
                         }
-                        withAnimation {backgroundColor = CustomColor.lightgreen}
-                    }}) {Text("Start")
+                    } // HStack
+                    //still in the else
+                    Button(action: { //start button to swith to countdown view
+                        if minutesInput != 0 {
+                            timeRemaining = minutesInput * 60
+                            isTimerRunning = true
+                            //AnimatedBackground().edgesIgnoringSafeArea(.all).blur(radius: 50)
+                            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true)
+                            { _ in
+                                if timeRemaining > 0 {
+                                    timeRemaining -= 1
+                                } else {
+                                    timer?.invalidate()
+                                    timer = nil
+                                    isTimerRunning = false
+                                    //backgroundColor = RadialGradient(colors: [CustomColor.cream, CustomColor.cream, CustomColor.cream], center: .center, startRadius: 0 ,endRadius: 10)
+                                }
+                            } //end if _in
+                            withAnimation { //still in the action of the button
+                                backgroundColor = RadialGradient(colors: [CustomColor.cream,CustomColor.cream,CustomColor.cream,CustomColor.lightgreen,CustomColor.lightgreen,CustomColor.mediumgreen,CustomColor.mediumgreen, CustomColor.mediumgreen], center: .center, startRadius: 0, endRadius: 400)
+                            }//end animation
+                        } //end of if minutesInput != 0, condition for which the action is executed
+                    }) //end of action
+                    {Text("Start")
                             .foregroundColor(CustomColor.darkgreen)
                             .font(.system(size: 32, weight: .heavy, design: .default))
-                        .padding()}
+                            .padding()
+                    }
                 } //end of VStack
                 Spacer()
-            }
+            } //end of ZStack
             .padding()
-            .background(backgroundColor)
         }
-    }
-        
-        func startTimer() {
-            isTimerRunning = true
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                if timeRemaining > 0 {
-                    timeRemaining -= 1
-                } else {
-                    timer?.invalidate()
-                    timer = nil
-                    isTimerRunning = false
-                }
+    } //end of body
+    func startTimer() {
+        isTimerRunning = true
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            if timeRemaining > 0 {
+                timeRemaining -= 1
+            } else {
+                timer?.invalidate()
+                timer = nil
+                isTimerRunning = false
             }
         }
+    } //end func
+}//end of view
         
-        
-        struct StartSession_Previews: PreviewProvider {
-            static var previews: some View {
-                StartSession()
-            }
-        }
+struct StartSession_Previews: PreviewProvider {
+    static var previews: some View {
+        StartSession()
     }
-
-/*struct AnimatedBackground: View {
-    @State var start = UnitPoint(x: 0, y: -2)
-    @State var end = UnitPoint(x: 4, y: 0)
-    
-    let timer = Timer.publish(every: 1, on: .main, in: .default).autoconnect()
-    let colors = [CustomColor.darkgreen, CustomColor.lightgreen, CustomColor.mediumgreen, CustomColor.cream, CustomColor.brown]
-    
-    var body: some View {
-        
-        LinearGradient(gradient: Gradient(colors: colors), startPoint: start, endPoint: end)
-            .animation(Animation.easeInOut(duration: 6).repeatForever())
-            .onReceive(timer, perform: { _ in
-                
-                self.start = UnitPoint(x: 4, y: 0)
-                self.end = UnitPoint(x: 0, y: 2)
-                self.start = UnitPoint(x: -4, y: 20)
-                self.start = UnitPoint(x: 4, y: 0)
-            })
-    }
-}*/
+}
