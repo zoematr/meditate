@@ -10,7 +10,6 @@ import SwiftUI
 import SwiftUI
 
 struct CalendarView: View {
-    @EnvironmentObject var meditationData: MeditationData
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [CustomColor.cream, CustomColor.cream, CustomColor.cream]),

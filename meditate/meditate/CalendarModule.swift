@@ -9,8 +9,8 @@ import SwiftUI
 import FSCalendar
 
 class CalendarModule: UIViewController, FSCalendarDelegate {
-    @EnvironmentObject var meditationData: MeditationData
-    @Published var calendar = FSCalendar()
+    
+    var calendar = FSCalendar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +38,7 @@ class CalendarModule: UIViewController, FSCalendarDelegate {
 }
 
 struct CalendarModuleViewController: UIViewControllerRepresentable {
-    @EnvironmentObject var meditationData: MeditationData
+    
     typealias UIViewControllerType = UIViewController
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<CalendarModuleViewController>) -> UIViewController {
@@ -51,7 +51,6 @@ struct CalendarModuleViewController: UIViewControllerRepresentable {
     }
     
     func makeCoordinator() -> Coordinator {
-        print(meditationData.sessions)
         return Coordinator(self)
     }
     
@@ -67,6 +66,7 @@ struct CalendarModuleViewController: UIViewControllerRepresentable {
 }
 
 struct CalendarModuleView: View {
+    
     var body: some View {
         CalendarModuleViewController()
     }

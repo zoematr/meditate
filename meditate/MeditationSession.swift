@@ -10,7 +10,7 @@ import Foundation
 struct MeditationSession: Identifiable {
     var id = UUID()
     var date: Date
-    var durationInMinutes: Int
+    var durationInSec: Int
 }
 
 class MeditationData: ObservableObject {

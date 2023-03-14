@@ -9,12 +9,10 @@ import SwiftUI
 
 @main
 struct meditateApp: App {
-    let meditationData = MeditationData()
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(meditationData)
         }
     }
 }
